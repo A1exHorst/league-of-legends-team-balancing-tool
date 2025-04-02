@@ -7,9 +7,52 @@ import { player } from './components';
 
 const rankDistributions: number[] = [0.19, 0.19, 0.19, 0.17, 0.11, 0.086, 0.027, 0.0059, 0.00065, 0.00027]
 
-//skill(r) = C*log(1/rankDistributions[r])
-//C = 10
-//const 
+const rankValue = (rank: number): number =>{
+  //skill(r) = C*log(1/rankDistributions[r])
+  return 4*Math.log10(1/rankDistributions[rank]);
+}
+
+function getPermutations<T>(arr: T[]): T[][] {
+  if (arr.length === 0) return [[]];
+  return arr.flatMap((value, index) =>
+      getPermutations([...arr.slice(0, index), ...arr.slice(index + 1)]).map(permutation => [value, ...permutation])
+  );
+}
+
+
+const convertRankTextToRankNumber = (rankText: string): number =>{
+  switch (rankText) {
+    case "Challenger":
+      return 9;
+    case "GrandMaster":
+      return 8;
+    case "Master":
+      return 7;
+    case "Diamond":
+      return 6;
+    case "Emerald":
+      return 5;
+    case "Platinum":
+      return 4;
+    case "Gold":
+      return 3;
+    case "Silver":
+      return 2;
+    case "Bronze":
+      return 1;
+    case "Iron":
+      return 0;
+    default:
+      return 3;
+  }
+}
+
+
+
+/*
+1. Alle Spielerkombinationen für Ranks probieren dabei sich die besten Kombinationen (die, die am ausgeglichesten sind) merken
+2. Innerhalb den Teams die Rollen quasi rekursiv zufällig verteilen.
+*/
 
 function App() {
   const [players, setPlayers] = useState<player[]>([])
@@ -22,6 +65,9 @@ function App() {
     //addPlayer(examplePlayer);
     //let examplePlayer2: player = {name: "LOL", rank: "LOL", role_primary: "LOL", role_secondary: "LOL"}
     //addPlayer(examplePlayer2);
+    const testArray: number[] = [1,2,3,4,5,6,7,8]
+    console.log("testArray: " + testArray)
+    console.log("Combinations: " + getPermutations(testArray))
   }, []);
 
   function updatePlayerElement(playerIdx: number, updates: Partial<player>){

@@ -29,6 +29,7 @@ export function AddPlayerBox({newPlayer, updateNewPlayer, addPlayer}: AddPlayerB
                     <option value="Master">Master</option>
                     <option value="Diamond">Diamond</option>
                     <option value="Emerald">Emerald</option>
+                    <option value="Platinum">Platinum</option>
                     <option value="Gold">Gold</option>
                     <option value="Silver">Silver</option>
                     <option value="Bronze">Bronze</option>
@@ -87,6 +88,7 @@ function PlayerListElement({ players, updatePlayerElement, deletePlayerElement }
                     <option value="Master">Master</option>
                     <option value="Diamond">Diamond</option>
                     <option value="Emerald">Emerald</option>
+                    <option value="Platinum">Platinum</option>
                     <option value="Gold">Gold</option>
                     <option value="Silver">Silver</option>
                     <option value="Bronze">Bronze</option>
